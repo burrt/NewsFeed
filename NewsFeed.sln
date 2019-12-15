@@ -9,10 +9,16 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "WeatherFeed", "WeatherFeed\
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "WeatherFeed.Tests", "WeatherFeed.Tests\WeatherFeed.Tests.csproj", "{95C62EFA-B162-401C-A81B-06739EB28552}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "NewsFeed.Cmd", "NewsFeed.Cmd\NewsFeed.Cmd.csproj", "{B3AFB08E-6BDC-48EE-BCDA-AB1F3254E10F}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "NewsFeed.Cmd", "NewsFeed.Cmd\NewsFeed.Cmd.csproj", "{B3AFB08E-6BDC-48EE-BCDA-AB1F3254E10F}"
 	ProjectSection(ProjectDependencies) = postProject
 		{8D4E413B-0C04-4073-80C9-2AAD0518ADDC} = {8D4E413B-0C04-4073-80C9-2AAD0518ADDC}
 		{163E52E8-67A3-4815-9B48-36A914124C9A} = {163E52E8-67A3-4815-9B48-36A914124C9A}
+	EndProjectSection
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution Items", "{D9464D53-6E32-4011-847B-0F7218D83693}"
+	ProjectSection(SolutionItems) = preProject
+		.gitignore = .gitignore
+		README.md = README.md
 	EndProjectSection
 EndProject
 Global
