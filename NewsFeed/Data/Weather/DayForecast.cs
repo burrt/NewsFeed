@@ -18,7 +18,7 @@
         /// <summary>
         /// Air temperature in degrees celsius.
         /// </summary>
-        public float AirTemperature { get; set; }
+        public double AirTemperature { get; set; }
 
         /// <summary>
         /// Current wind direction.
