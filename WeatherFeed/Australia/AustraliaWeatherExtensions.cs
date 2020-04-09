@@ -1,5 +1,5 @@
 ﻿using Microsoft.Extensions.DependencyInjection;
-using System;
+using NewsFeed.Core;
 using WeatherFeed.Australia.NSW;
 
 namespace WeatherFeed.Australia
@@ -8,10 +8,7 @@ namespace WeatherFeed.Australia
     {
         public static IServiceCollection AddAustraliaWeatherServices(this IServiceCollection services)
         {
-            if (services == null)
-            {
-                throw new ArgumentNullException(nameof(services));
-            }
+            Guard.IsNotNull(services, nameof(services));
 
             return services
                 .AddNswWeatherServices();

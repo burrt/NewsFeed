@@ -1,4 +1,4 @@
-﻿namespace NewsFeed.Data.Australia.NSW
+﻿namespace NewsFeed.Data.WeatherFeed.Australia.NSW
 {
     public class BomHeader
     {

@@ -1,6 +1,6 @@
 ﻿using Microsoft.Extensions.DependencyInjection;
+using NewsFeed.Core;
 using NewsFeed.Weather.Australia.NSW;
-using System;
 
 namespace WeatherFeed.Australia.NSW
 {
@@ -8,10 +8,7 @@ namespace WeatherFeed.Australia.NSW
     {
         public static IServiceCollection AddNswWeatherServices(this IServiceCollection services)
         {
-            if (services == null)
-            {
-                throw new ArgumentNullException(nameof(services));
-            }
+            Guard.IsNotNull(services, nameof(services));
 
             return services
                 .AddTransient<ISydneyRegionWeatherForecast, SydneyRegionWeatherForecast>();

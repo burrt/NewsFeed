@@ -1,6 +1,6 @@
 ﻿using System.Collections.Generic;
 
-namespace NewsFeed.Data.Australia.NSW
+namespace NewsFeed.Data.WeatherFeed.Australia.NSW
 {
     public class BomObservations
     {

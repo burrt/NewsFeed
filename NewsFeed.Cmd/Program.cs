@@ -1,14 +1,11 @@
 ﻿using Microsoft.Extensions.DependencyInjection;
-using Microsoft.Extensions.Hosting;
-using System;
-using System.IO;
-using System.Threading;
 using Microsoft.Extensions.Logging;
-using WeatherFeed;
-using NewsFeed.Http.Australia.NSW;
-using NewsFeed.Weather.Australia.NSW;
 using NewsFeed.Cmd.ConsolePrinters.Weather;
+using NewsFeed.Weather.Australia.NSW;
+using System;
+using System.Threading;
 using System.Threading.Tasks;
+using NewsFeed.Core;
 
 namespace NewsFeed.Cmd
 {
@@ -17,9 +14,22 @@ namespace NewsFeed.Cmd
         private ILogger Logger { get; set; }
         private ServiceProvider ConsoleServiceProvider { get; }
 
-        public Program()
+        public Program(ServiceProvider consoleServiceProvider)
         {
-            ConsoleServiceProvider = CreateConsoleServiceProvider();
+            ConsoleServiceProvider = consoleServiceProvider ?? throw new ArgumentNullException();
+        }
+
+        public async Task PrintNewsFeedAsync(ISydneyRegionWeatherForecast sydneyRegionWeatherForecast, CancellationToken cancellationToken = default)
+        {
+            Guard.IsNotNull(sydneyRegionWeatherForecast, nameof(sydneyRegionWeatherForecast));
+
+            // Sydney Region weather forecast
+            var weatherForecast = await sydneyRegionWeatherForecast.GetLatestForecastAsync(cancellationToken);
+
+            if (weatherForecast != null)
+            {
+                WeatherForecastConsolePrinter.PrintForecast(weatherForecast);
+            }
         }
 
         /// <summary>
@@ -29,20 +39,14 @@ namespace NewsFeed.Cmd
         /// <returns>Exit code.</returns>
         internal static async Task<int> Main(string[] args)
         {
-            PrintToConsoleStartupMessage();
-
             var cancellationToken = new CancellationToken();
 
-            var newsFeedProgram = new Program();
+            PrintToConsoleStartupMessage();
 
-            // Sydney Region weather forecast
+            var newsFeedProgram = new Program(CreateConsoleServiceProvider());
+
             var sydneyRegionWeatherForecast = (ISydneyRegionWeatherForecast)newsFeedProgram.ConsoleServiceProvider.GetService(typeof(ISydneyRegionWeatherForecast));
-            var weatherForecast = await sydneyRegionWeatherForecast.GetLatestForecastAsync(cancellationToken);
-
-            if (weatherForecast != null)
-            {
-                WeatherForecastConsolePrinter.PrintForecast(weatherForecast);
-            }
+            await newsFeedProgram.PrintNewsFeedAsync(sydneyRegionWeatherForecast, cancellationToken);
 
             PrintToConsoleShutdownMessage();
 

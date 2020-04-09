@@ -1,25 +1,25 @@
 ﻿using Moq;
-using NewsFeed.Data.Australia.NSW;
 using NewsFeed.Data.Weather;
-using NewsFeed.Http.Australia.NSW;
 using System;
 using System.Collections.Generic;
 using System.Threading;
 using System.Threading.Tasks;
+using NewsFeed.Data.WeatherFeed.Australia.NSW;
 using WeatherFeed.Australia.NSW;
+using WeatherFeed.Http.Australia;
 using Xunit;
 
 namespace WeatherFeed.Tests.Australia.NSW
 {
     public class SydneyRegionWeatherForecastTests
     {
-        private Mock<IBomSydneyRegionApiRunner> MockBomSydneyRegionApiRunner { get; }
+        private Mock<IBomAustraliaApiRunner> MockBomSydneyRegionApiRunner { get; }
         private SydneyRegionWeatherForecast SydneyRegionWeatherForecast { get; }
         private List<BomHeader> ValidSydneyWeatherForecastHeader { get; }
 
         public SydneyRegionWeatherForecastTests()
         {
-            MockBomSydneyRegionApiRunner = new Mock<IBomSydneyRegionApiRunner>();
+            MockBomSydneyRegionApiRunner = new Mock<IBomAustraliaApiRunner>();
             SydneyRegionWeatherForecast = new SydneyRegionWeatherForecast(MockBomSydneyRegionApiRunner.Object);
             ValidSydneyWeatherForecastHeader = new List<BomHeader>()
             {
@@ -50,7 +50,9 @@ namespace WeatherFeed.Tests.Australia.NSW
 
             // Assert
             MockBomSydneyRegionApiRunner
-                .Verify(b => b.GetLatestSydneyRegionForecastAsync(It.IsAny<CancellationToken>()), Times.Once);
+                .Verify(
+                    b => b.GetLatestSydneyRegionForecastAsync(It.IsAny<CancellationToken>()),
+                    Times.Once);
         }
 
         [Fact]
@@ -74,7 +76,9 @@ namespace WeatherFeed.Tests.Australia.NSW
 
             // Assert
             MockBomSydneyRegionApiRunner
-                .Verify(b => b.GetLatestSydneyRegionForecastAsync(It.IsAny<CancellationToken>()), Times.Once);
+                .Verify(
+                    b => b.GetLatestSydneyRegionForecastAsync(It.IsAny<CancellationToken>()),
+                    Times.Once);
             AssertValidWeatherForecastMetadata(weatherForecast);
             Assert.Empty(weatherForecast.DayForecasts);
         }
@@ -112,7 +116,9 @@ namespace WeatherFeed.Tests.Australia.NSW
 
             // Assert
             MockBomSydneyRegionApiRunner
-                .Verify(b => b.GetLatestSydneyRegionForecastAsync(It.IsAny<CancellationToken>()), Times.Once);
+                .Verify(
+                    b => b.GetLatestSydneyRegionForecastAsync(It.IsAny<CancellationToken>()),
+                    Times.Once);
             AssertValidWeatherForecastMetadata(weatherForecast);
             Assert.Single(weatherForecast.DayForecasts);
             Assert.Equal("Sydney - Observatory Hill", weatherForecast.DayForecasts[0].Location);

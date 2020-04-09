@@ -1,5 +1,6 @@
 ﻿using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
+using NewsFeed.Core;
 using WeatherFeed;
 
 namespace NewsFeed.Cmd
@@ -8,6 +9,8 @@ namespace NewsFeed.Cmd
     {
         public static IServiceCollection AddNewsFeedCmdServices(this IServiceCollection services)
         {
+            Guard.IsNotNull(services, nameof(services));
+
             return services
                 .AddNewsFeedServices()
                 .AddWeatherFeedServices();

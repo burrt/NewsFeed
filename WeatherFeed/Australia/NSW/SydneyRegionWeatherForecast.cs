@@ -1,27 +1,26 @@
 ﻿using NewsFeed.Data.Weather;
-using NewsFeed.Http.Australia.NSW;
 using NewsFeed.Weather.Australia.NSW;
 using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading;
 using System.Threading.Tasks;
+using WeatherFeed.Http.Australia;
 
 namespace WeatherFeed.Australia.NSW
 {
     public class SydneyRegionWeatherForecast : ISydneyRegionWeatherForecast
     {
-        private IBomSydneyRegionApiRunner BomSydneyRegionApiRunner { get; }
+        private IBomAustraliaApiRunner BomAustraliaApiRunner { get; }
 
-        public SydneyRegionWeatherForecast(IBomSydneyRegionApiRunner bomSydneyRegionApiRunner)
+        public SydneyRegionWeatherForecast(IBomAustraliaApiRunner bomAustraliaApiRunner)
         {
-            BomSydneyRegionApiRunner = bomSydneyRegionApiRunner ?? throw new ArgumentNullException(nameof(bomSydneyRegionApiRunner));
+            BomAustraliaApiRunner = bomAustraliaApiRunner ?? throw new ArgumentNullException(nameof(bomAustraliaApiRunner));
         }
 
-        /// <inheritdoc />
         public async Task<WeatherForecast> GetLatestForecastAsync(CancellationToken cancellationToken = default)
         {
-            var sydneyRegionForecast = await BomSydneyRegionApiRunner.GetLatestSydneyRegionForecastAsync(cancellationToken);
+            var sydneyRegionForecast = await BomAustraliaApiRunner.GetLatestSydneyRegionForecastAsync(cancellationToken);
             if (sydneyRegionForecast?.observations?.data == null)
             {
                 throw new InvalidOperationException("BOM Sydney Region forecast data is unavailable.");

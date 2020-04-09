@@ -1,6 +1,5 @@
 ﻿using Microsoft.Extensions.DependencyInjection;
-using System;
-using WeatherFeed.Http.Australia.NSW;
+using NewsFeed.Core;
 
 namespace WeatherFeed.Http.Australia
 {
@@ -8,13 +7,13 @@ namespace WeatherFeed.Http.Australia
     {
         internal static IServiceCollection AddAustraliaHttpServices(this IServiceCollection services)
         {
-            if (services == null)
-            {
-                throw new ArgumentNullException(nameof(services));
-            }
+            Guard.IsNotNull(services, nameof(services));
+
+            // Add typed HTTP clients
+            services.AddHttpClient<BomHttpClient>();
 
             return services
-                .AddNswHttpServices();
+                .AddTransient<IBomAustraliaApiRunner, BomAustraliaApiRunner>();;
         }
     }
 }
