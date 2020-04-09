@@ -1,5 +1,7 @@
 # News feed application
 
+![Build Status](https://github.com/burrt/NewsFeed/workflows/CI/badge.svg?branch=master)
+
 A basic application for retrieving news information from the internet and experimenting with various technologies, tools, design patterns and a bit of fun!
 
 ## Getting started
