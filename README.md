@@ -19,3 +19,10 @@ $> msbuild NewsFeed.sln
 # run the tests
 $> dotnet test
 ```
+
+## Remarks
+
+For some interesting unit testing, see:
+
+* `BomHttpClientTests` - testing `HttpClient`
+* `ConsolePrinterTests` - testing writing output to console

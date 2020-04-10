@@ -1,5 +1,5 @@
-using System;
 using NewsFeed.Core;
+using System;
 using Xunit;
 
 namespace NewsFeed.Tests.Core
