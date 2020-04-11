@@ -49,7 +49,7 @@ namespace NewsFeed.Cmd.Tests.Tools.Weather
 
             MockConsolePrinter.Verify(
                 c => c.WriteLine(It.IsAny<TextWriter>(), It.IsAny<string>()),
-                Times.AtLeast(6));
+                Times.AtLeast(7));
             MockConsolePrinter.Verify(
                 c => c.Write(It.IsAny<TextWriter>(), It.IsAny<string>()),
                 Times.AtLeast(2));
@@ -80,7 +80,7 @@ namespace NewsFeed.Cmd.Tests.Tools.Weather
 
             MockConsolePrinter.Verify(
                 c => c.WriteLine(It.IsAny<TextWriter>(), It.IsAny<string>()),
-                Times.AtMost(6));
+                Times.Exactly(7));
             MockConsolePrinter.Verify(
                 c => c.Write(It.IsAny<TextWriter>(), It.IsAny<string>()),
                 Times.Never);

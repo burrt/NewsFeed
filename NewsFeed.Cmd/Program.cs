@@ -72,9 +72,10 @@ namespace NewsFeed.Cmd
         {
             Guard.IsNotNull(consolePrinter, nameof(consolePrinter));
 
-            consolePrinter.WriteLine(Console.Out, "******************************************************************************");
-            consolePrinter.WriteLine(Console.Out, "Starting...");
-            consolePrinter.WriteLine(Console.Out, "******************************************************************************");
+            consolePrinter.WriteLine(Console.Out);
+            consolePrinter.WriteLine(Console.Out, "+---------------------------------------------------------------------------------------+");
+            consolePrinter.WriteLine(Console.Out, "| Starting...                                                                           |");
+            consolePrinter.WriteLine(Console.Out, "+---------------------------------------------------------------------------------------+");
         }
 
         /// <summary>
@@ -86,9 +87,10 @@ namespace NewsFeed.Cmd
             Guard.IsNotNull(consolePrinter, nameof(consolePrinter));
 
             consolePrinter.WriteLine(Console.Out);
-            consolePrinter.WriteLine(Console.Out, "******************************************************************************");
-            consolePrinter.WriteLine(Console.Out, "Exiting...");
-            consolePrinter.WriteLine(Console.Out, "******************************************************************************");
+            consolePrinter.WriteLine(Console.Out, "+---------------------------------------------------------------------------------------+");
+            consolePrinter.WriteLine(Console.Out, "| Exiting...                                                                            |");
+            consolePrinter.WriteLine(Console.Out, "+---------------------------------------------------------------------------------------+");
+            consolePrinter.WriteLine(Console.Out);
         }
 
         /// <summary>

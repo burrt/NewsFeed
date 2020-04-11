@@ -80,7 +80,7 @@ namespace NewsFeed.Cmd.Tests
             Program.PrintToConsoleStartupMessage(mockConsolePrinter.Object);
 
             mockConsolePrinter
-                .Verify(c => c.WriteLine(Console.Out, It.IsAny<string>()), Times.Exactly(3));
+                .Verify(c => c.WriteLine(Console.Out, It.IsAny<string>()), Times.Exactly(4));
         }
 
         [Fact]
@@ -92,7 +92,7 @@ namespace NewsFeed.Cmd.Tests
             Program.PrintToConsoleShutdownMessage(mockConsolePrinter.Object);
 
             mockConsolePrinter
-                .Verify(c => c.WriteLine(Console.Out, It.IsAny<string>()), Times.Exactly(4));
+                .Verify(c => c.WriteLine(Console.Out, It.IsAny<string>()), Times.Exactly(5));
         }
     }
 }
