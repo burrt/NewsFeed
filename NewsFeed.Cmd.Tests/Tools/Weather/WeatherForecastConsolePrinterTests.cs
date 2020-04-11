@@ -18,7 +18,6 @@ namespace NewsFeed.Cmd.Tests.Tools.Weather
         {
             MockConsolePrinter = new Mock<IConsolePrinter>();
 
-
             WeatherForecastConsolePrinter = new WeatherForecastConsolePrinter(MockConsolePrinter.Object);
         }
 

@@ -17,7 +17,7 @@ namespace NewsFeed.Cmd
 
         public Program(IServiceProvider consoleServiceProvider, IWeatherForecastConsolePrinter weatherForecastConsolePrinter)
         {
-            ConsoleServiceProvider = consoleServiceProvider ?? throw new ArgumentNullException();
+            ConsoleServiceProvider = consoleServiceProvider ?? throw new ArgumentNullException(nameof(consoleServiceProvider));
             WeatherForecastConsolePrinter = weatherForecastConsolePrinter ?? throw new ArgumentNullException(nameof(weatherForecastConsolePrinter));
         }
 

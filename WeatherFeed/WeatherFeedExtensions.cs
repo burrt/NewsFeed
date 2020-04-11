@@ -1,7 +1,6 @@
-﻿using Microsoft.Extensions.DependencyInjection;
+using Microsoft.Extensions.DependencyInjection;
 using NewsFeed.Core;
 using WeatherFeed.Australia;
-using WeatherFeed.Http;
 using WeatherFeed.Http.Australia;
 
 namespace WeatherFeed

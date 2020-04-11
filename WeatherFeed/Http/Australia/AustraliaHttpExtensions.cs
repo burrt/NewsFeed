@@ -1,11 +1,11 @@
-﻿using Microsoft.Extensions.DependencyInjection;
+using Microsoft.Extensions.DependencyInjection;
 using NewsFeed.Core;
 
 namespace WeatherFeed.Http.Australia
 {
-    internal static class AustraliaHttpExtensions
+    public static class AustraliaHttpExtensions
     {
-        internal static IServiceCollection AddAustraliaHttpServices(this IServiceCollection services)
+        public static IServiceCollection AddAustraliaHttpServices(this IServiceCollection services)
         {
             Guard.IsNotNull(services, nameof(services));
 

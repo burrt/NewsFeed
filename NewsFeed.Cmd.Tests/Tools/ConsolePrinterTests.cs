@@ -9,7 +9,7 @@ namespace NewsFeed.Cmd.Tests.Tools
     public class ConsolePrinterTests
     {
         private Mock<TextWriter> MockTextWriter { get; }
-        private IConsolePrinter ConsolePrinter { get; }
+        private ConsolePrinter ConsolePrinter { get; }
 
         public ConsolePrinterTests()
         {

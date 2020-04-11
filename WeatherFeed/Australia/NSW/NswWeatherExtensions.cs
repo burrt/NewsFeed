@@ -1,10 +1,10 @@
-﻿using Microsoft.Extensions.DependencyInjection;
+using Microsoft.Extensions.DependencyInjection;
 using NewsFeed.Core;
 using NewsFeed.Weather.Australia.NSW;
 
 namespace WeatherFeed.Australia.NSW
 {
-    internal static class NswWeatherExtensions
+    public static class NswWeatherExtensions
     {
         public static IServiceCollection AddNswWeatherServices(this IServiceCollection services)
         {

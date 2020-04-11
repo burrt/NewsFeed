@@ -4,9 +4,9 @@ using NewsFeed.Core;
 
 namespace NewsFeed.Cmd.Tools
 {
-    internal static class ToolsExtensions
+    public static class ToolsExtensions
     {
-        internal static IServiceCollection AddToolsServices(this IServiceCollection services)
+        public static IServiceCollection AddToolsServices(this IServiceCollection services)
         {
             Guard.IsNotNull(services, nameof(services));
 
