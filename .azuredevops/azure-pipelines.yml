@@ -1,0 +1,56 @@
+# ASP.NET Core (.NET Framework)
+
+# Build and test ASP.NET Core projects targeting the full .NET Framework.
+# Add steps that publish symbols, save build artifacts, and more:
+# https://docs.microsoft.com/azure/devops/pipelines/languages/dotnet-core
+
+trigger:
+  branches:
+    include:
+    - '*'
+
+pool:
+  vmImage: 'windows-latest'
+
+variables:
+  solution: '**/NewsFeed.sln'
+  buildPlatform: 'Any CPU'
+  buildConfiguration: 'Debug'
+
+steps:
+- task: NuGetToolInstaller@1
+
+- task: SonarCloudPrepare@1
+  inputs:
+    SonarCloud: 'AzureDevops-SonarCloud'
+    organization: 'burrt'
+    scannerMode: 'MSBuild'
+    projectKey: 'burrt_NewsFeed'
+    projectName: 'NewsFeed'
+
+- task: NuGetCommand@2
+  displayName: NuGet Restore
+  inputs:
+    restoreSolution: '$(solution)'
+
+- task: VSBuild@1
+  inputs:
+    solution: '$(solution)'
+    msbuildArgs: '/m'
+    platform: '$(buildPlatform)'
+    configuration: '$(buildConfiguration)'
+
+- script: dotnet test --configuration $(buildConfiguration) --logger trx --collect "Code coverage"
+  displayName: Run unit tests
+
+- task: PublishTestResults@2
+  displayName: Publish unit test reports
+  inputs:
+    testRunner: VSTest
+    testResultsFiles: '**/*.trx'
+
+- task: SonarCloudAnalyze@1
+
+- task: SonarCloudPublish@1
+  inputs:
+    pollingTimeoutSec: '300'
