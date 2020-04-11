@@ -5,6 +5,7 @@ using NewsFeed.Weather.Australia.NSW;
 using System;
 using System.Threading;
 using System.Threading.Tasks;
+using NewsFeed.Cmd.Tools;
 using Xunit;
 
 namespace NewsFeed.Cmd.Tests
@@ -12,15 +13,15 @@ namespace NewsFeed.Cmd.Tests
     public class ProgramTests
     {
         private Mock<ISydneyRegionWeatherForecast> MockSydneyRegionWeatherForecast { get; }
-        private Mock<IWeatherForecastConsolePrinter> MockConsolePrinter { get; }
+        private Mock<IWeatherForecastConsolePrinter> MockWeatherConsolePrinter { get; }
         private Program Program { get; }
 
         public ProgramTests()
         {
             MockSydneyRegionWeatherForecast = new Mock<ISydneyRegionWeatherForecast>();
-            MockConsolePrinter = new Mock<IWeatherForecastConsolePrinter>();
+            MockWeatherConsolePrinter = new Mock<IWeatherForecastConsolePrinter>();
 
-            Program = new Program(new Mock<IServiceProvider>().Object, MockConsolePrinter.Object);
+            Program = new Program(new Mock<IServiceProvider>().Object, MockWeatherConsolePrinter.Object);
         }
 
         [Fact]
@@ -39,7 +40,7 @@ namespace NewsFeed.Cmd.Tests
 
             await Program.PrintNewsFeedAsync(MockSydneyRegionWeatherForecast.Object);
 
-            MockConsolePrinter.Verify(
+            MockWeatherConsolePrinter.Verify(
                 c => c.PrintForecast(sydneyWeatherForecast),
                 Times.Once);
         }
@@ -53,9 +54,45 @@ namespace NewsFeed.Cmd.Tests
 
             await Program.PrintNewsFeedAsync(MockSydneyRegionWeatherForecast.Object);
 
-            MockConsolePrinter.Verify(
+            MockWeatherConsolePrinter.Verify(
                 c => c.PrintForecast(It.IsAny<WeatherForecast>()),
                 Times.Never);
+        }
+
+        [Fact]
+        public void PrintToConsoleStartupMessage_NullConsolePrinter_ThrowsException()
+        {
+            Assert.Throws<ArgumentNullException>(() => Program.PrintToConsoleStartupMessage(null));
+        }
+
+        [Fact]
+        public void PrintToConsoleShutdownMessage_NullConsolePrinter_ThrowsException()
+        {
+            Assert.Throws<ArgumentNullException>(() => Program.PrintToConsoleShutdownMessage(null));
+        }
+
+        [Fact]
+        public void PrintToConsoleStartupMessage_ValidConsolePrinter_Success()
+        {
+            var mockConsolePrinter = new Mock<IConsolePrinter>();
+            mockConsolePrinter.Setup(c => c.WriteLine(Console.Out, It.IsAny<string>()));
+
+            Program.PrintToConsoleStartupMessage(mockConsolePrinter.Object);
+
+            mockConsolePrinter
+                .Verify(c => c.WriteLine(Console.Out, It.IsAny<string>()), Times.Exactly(3));
+        }
+
+        [Fact]
+        public void PrintToConsoleShutdownMessage_ValidConsolePrinter_Success()
+        {
+            var mockConsolePrinter = new Mock<IConsolePrinter>();
+            mockConsolePrinter.Setup(c => c.WriteLine(Console.Out, It.IsAny<string>()));
+
+            Program.PrintToConsoleShutdownMessage(mockConsolePrinter.Object);
+
+            mockConsolePrinter
+                .Verify(c => c.WriteLine(Console.Out, It.IsAny<string>()), Times.Exactly(4));
         }
     }
 }

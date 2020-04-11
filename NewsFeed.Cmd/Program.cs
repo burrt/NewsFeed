@@ -1,5 +1,6 @@
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Logging;
+using NewsFeed.Cmd.Tools;
 using NewsFeed.Cmd.Tools.Weather;
 using NewsFeed.Core;
 using NewsFeed.Weather.Australia.NSW;
@@ -48,15 +49,17 @@ namespace NewsFeed.Cmd
             var cancellationToken = new CancellationToken();
             var serviceProvider = CreateConsoleServiceProvider();
 
-            PrintToConsoleStartupMessage();
+            var weatherForecastConsolePrinter = (IWeatherForecastConsolePrinter)serviceProvider.GetService(typeof(IWeatherForecastConsolePrinter));
+            var consolePrinter = (IConsolePrinter)serviceProvider.GetService(typeof(IConsolePrinter));
 
-            var consolePrinter = (IWeatherForecastConsolePrinter)serviceProvider.GetService(typeof(IWeatherForecastConsolePrinter));
-            var newsFeedProgram = new Program(serviceProvider, consolePrinter);
+            var newsFeedProgram = new Program(serviceProvider, weatherForecastConsolePrinter);
+
+            newsFeedProgram.PrintToConsoleStartupMessage(consolePrinter);
 
             var sydneyRegionWeatherForecast = (ISydneyRegionWeatherForecast)newsFeedProgram.ConsoleServiceProvider.GetService(typeof(ISydneyRegionWeatherForecast));
             await newsFeedProgram.PrintNewsFeedAsync(sydneyRegionWeatherForecast, cancellationToken);
 
-            PrintToConsoleShutdownMessage();
+            newsFeedProgram.PrintToConsoleShutdownMessage(consolePrinter);
 
             return 0;
         }
@@ -64,22 +67,28 @@ namespace NewsFeed.Cmd
         /// <summary>
         /// Print startup message.
         /// </summary>
-        private static void PrintToConsoleStartupMessage()
+        /// <param name="consolePrinter">Console printer.</param>
+        public void PrintToConsoleStartupMessage(IConsolePrinter consolePrinter)
         {
-            Console.WriteLine("******************************************************************************");
-            Console.WriteLine("Starting...");
-            Console.WriteLine("******************************************************************************");
+            Guard.IsNotNull(consolePrinter, nameof(consolePrinter));
+
+            consolePrinter.WriteLine(Console.Out, "******************************************************************************");
+            consolePrinter.WriteLine(Console.Out, "Starting...");
+            consolePrinter.WriteLine(Console.Out, "******************************************************************************");
         }
 
         /// <summary>
         /// Print shutdown message.
         /// </summary>
-        private static void PrintToConsoleShutdownMessage()
+        /// <param name="consolePrinter">Console printer.</param>
+        public void PrintToConsoleShutdownMessage(IConsolePrinter consolePrinter)
         {
-            Console.WriteLine();
-            Console.WriteLine("******************************************************************************");
-            Console.WriteLine("Exiting...");
-            Console.WriteLine("******************************************************************************");
+            Guard.IsNotNull(consolePrinter, nameof(consolePrinter));
+
+            consolePrinter.WriteLine(Console.Out);
+            consolePrinter.WriteLine(Console.Out, "******************************************************************************");
+            consolePrinter.WriteLine(Console.Out, "Exiting...");
+            consolePrinter.WriteLine(Console.Out, "******************************************************************************");
         }
 
         /// <summary>

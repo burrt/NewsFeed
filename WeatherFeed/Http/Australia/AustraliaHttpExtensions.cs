@@ -13,7 +13,7 @@ namespace WeatherFeed.Http.Australia
             services.AddHttpClient<BomHttpClient>();
 
             return services
-                .AddTransient<IBomAustraliaApiRunner, BomAustraliaApiRunner>();;
+                .AddTransient<IBomAustraliaApiRunner, BomAustraliaApiRunner>();
         }
     }
 }
