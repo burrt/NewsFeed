@@ -1,8 +1,11 @@
-﻿namespace NewsFeed.Data.Weather
+using System.Diagnostics.CodeAnalysis;
+
+namespace NewsFeed.Data.Weather
 {
     /// <summary>
     /// Day weather forecast.
     /// </summary>
+    [ExcludeFromCodeCoverage]
     public class DayForecast
     {
         /// <summary>

@@ -1,8 +1,10 @@
+using System.Diagnostics.CodeAnalysis;
 using Microsoft.Extensions.DependencyInjection;
 using NewsFeed.Core;
 
 namespace NewsFeed
 {
+    [ExcludeFromCodeCoverage]
     public static class NewsFeedExtensions
     {
         public static IServiceCollection AddNewsFeedServices(this IServiceCollection services)

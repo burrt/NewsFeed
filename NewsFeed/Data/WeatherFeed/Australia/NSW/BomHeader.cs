@@ -1,5 +1,8 @@
-﻿namespace NewsFeed.Data.WeatherFeed.Australia.NSW
+using System.Diagnostics.CodeAnalysis;
+
+namespace NewsFeed.Data.WeatherFeed.Australia.NSW
 {
+    [ExcludeFromCodeCoverage]
     public class BomHeader
     {
 #pragma warning disable IDE1006

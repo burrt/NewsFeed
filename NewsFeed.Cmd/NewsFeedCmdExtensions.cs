@@ -2,10 +2,12 @@ using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using NewsFeed.Cmd.Tools;
 using NewsFeed.Core;
+using System.Diagnostics.CodeAnalysis;
 using WeatherFeed;
 
 namespace NewsFeed.Cmd
 {
+    [ExcludeFromCodeCoverage]
     public static class NewsFeedCmdExtensions
     {
         public static IServiceCollection AddNewsFeedCmdServices(this IServiceCollection services)

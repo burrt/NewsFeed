@@ -1,8 +1,10 @@
 using Microsoft.Extensions.DependencyInjection;
 using NewsFeed.Core;
+using System.Diagnostics.CodeAnalysis;
 
 namespace WeatherFeed.Http.Australia
 {
+    [ExcludeFromCodeCoverage]
     public static class AustraliaHttpExtensions
     {
         public static IServiceCollection AddAustraliaHttpServices(this IServiceCollection services)

@@ -1,10 +1,12 @@
-﻿using System.Collections.Generic;
+using System.Collections.Generic;
+using System.Diagnostics.CodeAnalysis;
 
 namespace NewsFeed.Data.Weather
 {
     /// <summary>
     /// Weather forecast.
     /// </summary>
+    [ExcludeFromCodeCoverage]
     public class WeatherForecast
     {
         /// <summary>
