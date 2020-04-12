@@ -1,4 +1,4 @@
-﻿using Moq;
+using Moq;
 using NewsFeed.Data.Weather;
 using System;
 using System.Collections.Generic;
@@ -38,12 +38,60 @@ namespace WeatherFeed.Tests.Australia.NSW
         }
 
         [Fact]
-        public async Task GetLatestForecastAsync_NoForecastAvailable_ThrowsInvalidOperationException()
+        public async Task GetLatestForecastAsync_NoForecastAvailable_ThrowsException()
         {
             // Arrange
             MockBomSydneyRegionApiRunner
                 .Setup(b => b.GetLatestSydneyRegionForecastAsync(It.IsAny<CancellationToken>()))
                 .Returns(Task.FromResult<BomLatestWeatherForecast>(null));
+
+            // Act
+            await Assert.ThrowsAsync<InvalidOperationException>(() => SydneyRegionWeatherForecast.GetLatestForecastAsync());
+
+            // Assert
+            MockBomSydneyRegionApiRunner
+                .Verify(
+                    b => b.GetLatestSydneyRegionForecastAsync(It.IsAny<CancellationToken>()),
+                    Times.Once);
+        }
+
+        [Fact]
+        public async Task GetLatestForecastAsync_NullObservationsForecast_ThrowsException()
+        {
+            // Arrange
+            var nullObservationsForecast = new BomLatestWeatherForecast()
+            {
+                observations = null
+            };
+            MockBomSydneyRegionApiRunner
+                .Setup(b => b.GetLatestSydneyRegionForecastAsync(It.IsAny<CancellationToken>()))
+                .Returns(Task.FromResult(nullObservationsForecast));
+
+            // Act
+            await Assert.ThrowsAsync<InvalidOperationException>(() => SydneyRegionWeatherForecast.GetLatestForecastAsync());
+
+            // Assert
+            MockBomSydneyRegionApiRunner
+                .Verify(
+                    b => b.GetLatestSydneyRegionForecastAsync(It.IsAny<CancellationToken>()),
+                    Times.Once);
+        }
+
+        [Fact]
+        public async Task GetLatestForecastAsync_NullDataForecast_ThrowsException()
+        {
+            // Arrange
+            var nullObservationsForecast = new BomLatestWeatherForecast()
+            {
+                observations = new BomObservations()
+                {
+                    header = ValidSydneyWeatherForecastHeader,
+                    data = null
+                }
+            };
+            MockBomSydneyRegionApiRunner
+                .Setup(b => b.GetLatestSydneyRegionForecastAsync(It.IsAny<CancellationToken>()))
+                .Returns(Task.FromResult(nullObservationsForecast));
 
             // Act
             await Assert.ThrowsAsync<InvalidOperationException>(() => SydneyRegionWeatherForecast.GetLatestForecastAsync());
