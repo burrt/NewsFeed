@@ -9,7 +9,7 @@ A basic application for retrieving news information from the internet and experi
 
 ## Getting started
 
-This project was building using Visual Studio 2019 targeting .NET Core 3.1.100 LTS.
+This project was built using Visual Studio 2019 targeting .NET Core 3.1.100 LTS.
 
 ```bash
 # clone the repository
