@@ -13,14 +13,14 @@ This project was built using Visual Studio 2019 targeting .NET Core 3.1.100 LTS.
 
 ```bash
 # clone the repository
-$> git clone https://github.com/burrt/NewsFeed.git
+$ git clone https://github.com/burrt/NewsFeed.git
 
 # build the solution
-$> msbuild -t:restore
-$> msbuild NewsFeed.sln
+$ msbuild -t:restore
+$ msbuild NewsFeed.sln
 
 # run the tests
-$> dotnet test
+$ dotnet test
 ```
 
 ## Remarks

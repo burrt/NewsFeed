@@ -32,7 +32,7 @@ namespace NewsFeed.Cmd.Tools.Weather
                 ConsolePrinter.WriteLine(Console.Out, "+---------------------------------------------------------------------------------------+");
                 foreach (var dayForecast in weatherForecast.DayForecasts)
                 {
-                    ConsolePrinter.Write(Console.Out, $"|\t{dayForecast.AirTemperature}:\t\t\t");
+                    ConsolePrinter.Write(Console.Out, $"|\t{dayForecast.AirTemperature}\t\t\t");
                     ConsolePrinter.Write(Console.Out, $"|\t{dayForecast.WindSpeedKmHr}km/hr {dayForecast.WindDirection}\t");
                     ConsolePrinter.WriteLine(Console.Out, $"|\t{dayForecast.LocalTime}\t{weatherForecast.TimeZone}\t|");
                 }
