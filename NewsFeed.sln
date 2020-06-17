@@ -21,11 +21,12 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution 
 		.gitignore = .gitignore
 		global.json = global.json
 		README.md = README.md
+		stylecop.json = stylecop.json
 	EndProjectSection
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "NewsFeed.Tests", "NewsFeed.Tests\NewsFeed.Tests.csproj", "{1BD27C7B-3E5B-42B8-BB20-C9656D4E6D82}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "NewsFeed.Cmd.Tests", "NewsFeed.Cmd.Tests\NewsFeed.Cmd.Tests.csproj", "{ED74DAA8-11F0-4B6D-8EA6-F83775B8E580}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "NewsFeed.Cmd.Tests", "NewsFeed.Cmd.Tests\NewsFeed.Cmd.Tests.csproj", "{ED74DAA8-11F0-4B6D-8EA6-F83775B8E580}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution

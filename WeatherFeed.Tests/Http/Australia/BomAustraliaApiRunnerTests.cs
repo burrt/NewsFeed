@@ -6,55 +6,76 @@ using Xunit;
 
 namespace WeatherFeed.Tests.Http.Australia
 {
+    /// <summary>
+    /// BOM Australia API runner tests.
+    /// </summary>
     public class BomAustraliaApiRunnerTests
     {
         private const string SydneyRegionId = "IDN60901/IDN60901.94768";
+
         private Mock<BomHttpClient> MockBomHttpClient { get; }
+
         private BomAustraliaApiRunner BomAustraliaApiRunner { get; }
 
+        /// <summary>
+        /// Initializes a new instance of the <see cref="BomAustraliaApiRunnerTests"/> class.
+        /// </summary>
         public BomAustraliaApiRunnerTests()
         {
-            MockBomHttpClient = new Mock<BomHttpClient>();
-            BomAustraliaApiRunner = new BomAustraliaApiRunner(MockBomHttpClient.Object);
+            this.MockBomHttpClient = new Mock<BomHttpClient>();
+            this.BomAustraliaApiRunner = new BomAustraliaApiRunner(this.MockBomHttpClient.Object);
         }
 
+        /// <summary>
+        /// GetWeatherForecastAsync returns null HTTP response when API returns null or whitespace .
+        /// </summary>
+        /// <param name="httpResponse">HTTP response.</param>
+        /// <returns>Task.</returns>
         [Theory]
         [InlineData("")]
         [InlineData(" ")]
         [InlineData(null)]
         public async Task GetLatestSydneyRegionForecastAsync_NullWhitespaceHttpResponse_ReturnsNull(string httpResponse)
         {
-            MockBomHttpClient
+            this.MockBomHttpClient
                 .Setup(h => h.GetWeatherForecastAsync(SydneyRegionId, It.IsAny<CancellationToken>()))
                 .ReturnsAsync(httpResponse);
 
-            var bomData = await BomAustraliaApiRunner.GetLatestSydneyRegionForecastAsync();
+            var bomData = await this.BomAustraliaApiRunner.GetLatestSydneyRegionForecastAsync();
 
-            MockBomHttpClient.Verify(
+            this.MockBomHttpClient.Verify(
                 h => h.GetWeatherForecastAsync(SydneyRegionId, It.IsAny<CancellationToken>()),
                 Times.Once);
             Assert.Null(bomData);
         }
 
+        /// <summary>
+        /// GetWeatherForecastAsync returns empty HTTP response when API returns empty.
+        /// </summary>
+        /// <returns>Task.</returns>
         [Fact]
         public async Task GetLatestSydneyRegionForecastAsync_EmptyHttpResponse_Success()
         {
-            MockBomHttpClient
+            this.MockBomHttpClient
                 .Setup(h => h.GetWeatherForecastAsync(SydneyRegionId, It.IsAny<CancellationToken>()))
                 .ReturnsAsync("{}");
 
-            var bomData = await BomAustraliaApiRunner.GetLatestSydneyRegionForecastAsync();
+            var bomData = await this.BomAustraliaApiRunner.GetLatestSydneyRegionForecastAsync();
 
-            MockBomHttpClient.Verify(
+            this.MockBomHttpClient.Verify(
                 h => h.GetWeatherForecastAsync(SydneyRegionId, It.IsAny<CancellationToken>()),
                 Times.Once);
             Assert.NotNull(bomData);
         }
 
+        /// <summary>
+        /// GetLatestSydneyRegionForecastAsyn returns valid HTTP response when API returns valid data.
+        /// </summary>
+        /// <returns>Task.</returns>
         [Fact]
         public async Task GetLatestSydneyRegionForecastAsync_ValidHttpResponse_Success()
         {
-            MockBomHttpClient
+            this.MockBomHttpClient
                 .Setup(h => h.GetWeatherForecastAsync(SydneyRegionId, It.IsAny<CancellationToken>()))
                 .ReturnsAsync(@"
 {
@@ -121,9 +142,9 @@ namespace WeatherFeed.Tests.Http.Australia
     }
 }");
 
-            var bomData = await BomAustraliaApiRunner.GetLatestSydneyRegionForecastAsync();
+            var bomData = await this.BomAustraliaApiRunner.GetLatestSydneyRegionForecastAsync();
 
-            MockBomHttpClient.Verify(
+            this.MockBomHttpClient.Verify(
                 h => h.GetWeatherForecastAsync(SydneyRegionId, It.IsAny<CancellationToken>()),
                 Times.Once);
             Assert.NotNull(bomData);

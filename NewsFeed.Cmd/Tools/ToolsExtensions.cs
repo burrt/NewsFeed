@@ -5,9 +5,17 @@ using System.Diagnostics.CodeAnalysis;
 
 namespace NewsFeed.Cmd.Tools
 {
+    /// <summary>
+    /// Tools extensions.
+    /// </summary>
     [ExcludeFromCodeCoverage]
     public static class ToolsExtensions
     {
+        /// <summary>
+        /// Add tool services.
+        /// </summary>
+        /// <param name="services">Service collection.</param>
+        /// <returns>The service collection.</returns>
         public static IServiceCollection AddToolsServices(this IServiceCollection services)
         {
             Guard.IsNotNull(services, nameof(services));

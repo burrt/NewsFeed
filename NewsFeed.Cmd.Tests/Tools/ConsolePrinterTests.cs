@@ -6,38 +6,57 @@ using Xunit;
 
 namespace NewsFeed.Cmd.Tests.Tools
 {
+    /// <summary>
+    /// Console printer tests.
+    /// </summary>
     public class ConsolePrinterTests
     {
         private Mock<TextWriter> MockTextWriter { get; }
+
         private ConsolePrinter ConsolePrinter { get; }
 
+        /// <summary>
+        /// Initializes a new instance of the <see cref="ConsolePrinterTests"/> class.
+        /// </summary>
         public ConsolePrinterTests()
         {
-            MockTextWriter = new Mock<TextWriter>(MockBehavior.Strict);
-            MockTextWriter.Setup(s => s.Write(It.IsAny<string>()));
-            MockTextWriter.Setup(s => s.WriteLine(It.IsAny<string>()));
+            this.MockTextWriter = new Mock<TextWriter>(MockBehavior.Strict);
+            this.MockTextWriter.Setup(s => s.Write(It.IsAny<string>()));
+            this.MockTextWriter.Setup(s => s.WriteLine(It.IsAny<string>()));
 
-            ConsolePrinter = new ConsolePrinter();
+            this.ConsolePrinter = new ConsolePrinter();
         }
 
+        /// <summary>
+        /// Write with a null stream throws exception.
+        /// </summary>
+        /// <param name="value">String values to write.</param>
         [Theory]
         [InlineData("")]
         [InlineData(" ")]
         [InlineData(null)]
         public void Write_NullStream_ThrowsException(string value)
         {
-            Assert.Throws<ArgumentNullException>(() => ConsolePrinter.Write(null, value));
+            Assert.Throws<ArgumentNullException>(() => this.ConsolePrinter.Write(null, value));
         }
 
+        /// <summary>
+        /// WriteLine with a null stream throws exception.
+        /// </summary>
+        /// <param name="value">String values to write.</param>
         [Theory]
         [InlineData("")]
         [InlineData(" ")]
         [InlineData(null)]
         public void WriteLine_NullStream_ThrowsException(string value)
         {
-            Assert.Throws<ArgumentNullException>(() => ConsolePrinter.WriteLine(null, value));
+            Assert.Throws<ArgumentNullException>(() => this.ConsolePrinter.WriteLine(null, value));
         }
 
+        /// <summary>
+        /// Write with valid strings are successful.
+        /// </summary>
+        /// <param name="value">String values to write.</param>
         [Theory]
         [InlineData("")]
         [InlineData(" ")]
@@ -45,11 +64,15 @@ namespace NewsFeed.Cmd.Tests.Tools
         [InlineData(null)]
         public void Write_ValidString_Success(string value)
         {
-            ConsolePrinter.Write(MockTextWriter.Object, value);
+            this.ConsolePrinter.Write(this.MockTextWriter.Object, value);
 
-            MockTextWriter.Verify(s => s.Write(value), Times.Once);
+            this.MockTextWriter.Verify(s => s.Write(value), Times.Once);
         }
 
+        /// <summary>
+        /// WriteLine with valid strings are successful.
+        /// </summary>
+        /// <param name="value">String values to write.</param>
         [Theory]
         [InlineData("")]
         [InlineData(" ")]
@@ -57,9 +80,9 @@ namespace NewsFeed.Cmd.Tests.Tools
         [InlineData(null)]
         public void WriteLine_ValidString_Success(string value)
         {
-            ConsolePrinter.WriteLine(MockTextWriter.Object, value);
+            this.ConsolePrinter.WriteLine(this.MockTextWriter.Object, value);
 
-            MockTextWriter.Verify(s => s.WriteLine(value), Times.Once);
+            this.MockTextWriter.Verify(s => s.WriteLine(value), Times.Once);
         }
     }
 }

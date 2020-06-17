@@ -7,9 +7,17 @@ using WeatherFeed;
 
 namespace NewsFeed.Cmd
 {
+    /// <summary>
+    /// News feed cmd extensions.
+    /// </summary>
     [ExcludeFromCodeCoverage]
     public static class NewsFeedCmdExtensions
     {
+        /// <summary>
+        /// Add news feed cmd services.
+        /// </summary>
+        /// <param name="services">Service collection.</param>
+        /// <returns>The service collection.</returns>
         public static IServiceCollection AddNewsFeedCmdServices(this IServiceCollection services)
         {
             Guard.IsNotNull(services, nameof(services));
