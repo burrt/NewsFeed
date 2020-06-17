@@ -5,6 +5,7 @@ using NewsFeed.Cmd.Tools.Weather;
 using NewsFeed.Core;
 using NewsFeed.Weather.Australia.NSW;
 using System;
+using System.Diagnostics.CodeAnalysis;
 using System.Threading;
 using System.Threading.Tasks;
 
@@ -82,9 +83,9 @@ namespace NewsFeed.Cmd
         /// <summary>
         /// Entry point of the command line program.
         /// </summary>
-        /// <param name="args">The command line arguments.</param>
         /// <returns>Exit code.</returns>
-        internal static async Task<int> Main(string[] args)
+        [ExcludeFromCodeCoverage]
+        internal static async Task<int> Main()
         {
             var cancellationToken = CancellationToken.None;
             var serviceProvider = CreateConsoleServiceProvider();
@@ -108,6 +109,7 @@ namespace NewsFeed.Cmd
         /// Create the service provider and register services.
         /// </summary>
         /// <returns>Service provider.</returns>
+        [ExcludeFromCodeCoverage]
         private static IServiceProvider CreateConsoleServiceProvider()
         {
             var serviceCollection = new ServiceCollection();
