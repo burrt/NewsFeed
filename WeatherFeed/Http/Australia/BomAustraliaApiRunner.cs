@@ -29,18 +29,13 @@ namespace WeatherFeed.Http.Australia
         {
             var stringResponse = await this.BomHttpClient.GetWeatherForecastAsync(SydneyRegionId, cancellationToken);
 
-            if (string.IsNullOrWhiteSpace(stringResponse))
+            var serializerSettings = new JsonSerializerSettings
             {
-                return null;
-            }
+                MissingMemberHandling = MissingMemberHandling.Ignore,
+            };
 
             // Ignore any missing members in the POCOs
-            return JsonConvert.DeserializeObject<BomLatestWeatherForecast>(
-                stringResponse,
-                new JsonSerializerSettings
-                {
-                    MissingMemberHandling = MissingMemberHandling.Ignore,
-                });
+            return string.IsNullOrWhiteSpace(stringResponse) ? null : JsonConvert.DeserializeObject<BomLatestWeatherForecast>(stringResponse, serializerSettings);
         }
     }
 }
