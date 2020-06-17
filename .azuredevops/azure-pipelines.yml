@@ -35,6 +35,7 @@ steps:
 
 - task: VSBuild@1
   inputs:
+    vsVersion: '16.0'
     solution: '$(solution)'
     msbuildArgs: '/m'
     platform: '$(buildPlatform)'
