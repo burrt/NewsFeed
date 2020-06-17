@@ -1,4 +1,4 @@
-﻿using NewsFeed.Data.Weather;
+using NewsFeed.Data.Weather;
 using NewsFeed.Weather.Australia.NSW;
 using System;
 using System.Collections.Generic;
@@ -9,18 +9,26 @@ using WeatherFeed.Http.Australia;
 
 namespace WeatherFeed.Australia.NSW
 {
+    /// <summary>
+    /// System region weather forecase.
+    /// </summary>
     public class SydneyRegionWeatherForecast : ISydneyRegionWeatherForecast
     {
         private IBomAustraliaApiRunner BomAustraliaApiRunner { get; }
 
+        /// <summary>
+        /// Initializes a new instance of the <see cref="SydneyRegionWeatherForecast"/> class.
+        /// </summary>
+        /// <param name="bomAustraliaApiRunner">BOM Australia API runner.</param>
         public SydneyRegionWeatherForecast(IBomAustraliaApiRunner bomAustraliaApiRunner)
         {
-            BomAustraliaApiRunner = bomAustraliaApiRunner ?? throw new ArgumentNullException(nameof(bomAustraliaApiRunner));
+            this.BomAustraliaApiRunner = bomAustraliaApiRunner ?? throw new ArgumentNullException(nameof(bomAustraliaApiRunner));
         }
 
+        /// <inheritdoc />
         public async Task<WeatherForecast> GetLatestForecastAsync(CancellationToken cancellationToken = default)
         {
-            var sydneyRegionForecast = await BomAustraliaApiRunner.GetLatestSydneyRegionForecastAsync(cancellationToken);
+            var sydneyRegionForecast = await this.BomAustraliaApiRunner.GetLatestSydneyRegionForecastAsync(cancellationToken);
             if (sydneyRegionForecast?.observations?.data == null)
             {
                 throw new InvalidOperationException("BOM Sydney Region forecast data is unavailable.");
@@ -34,7 +42,7 @@ namespace WeatherFeed.Australia.NSW
                 LocationState = header.state,
                 RefreshMessage = header.refresh_message,
                 TimeZone = header.time_zone,
-                DayForecasts = new List<DayForecast>()
+                DayForecasts = new List<DayForecast>(),
             };
 
             foreach (var dayForecast in sydneyRegionForecast.observations.data)
@@ -45,7 +53,7 @@ namespace WeatherFeed.Australia.NSW
                     LocalTime = dayForecast.local_date_time,
                     AirTemperature = dayForecast.air_temp,
                     WindDirection = dayForecast.wind_dir,
-                    WindSpeedKmHr = dayForecast.wind_spd_kmh
+                    WindSpeedKmHr = dayForecast.wind_spd_kmh,
                 });
             }
 

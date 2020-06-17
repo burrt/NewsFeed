@@ -11,17 +11,25 @@ using Xunit;
 
 namespace WeatherFeed.Tests.Australia.NSW
 {
+    /// <summary>
+    /// Sydney region weather forecase tests.
+    /// </summary>
     public class SydneyRegionWeatherForecastTests
     {
         private Mock<IBomAustraliaApiRunner> MockBomSydneyRegionApiRunner { get; }
+
         private SydneyRegionWeatherForecast SydneyRegionWeatherForecast { get; }
+
         private List<BomHeader> ValidSydneyWeatherForecastHeader { get; }
 
+        /// <summary>
+        /// Initializes a new instance of the <see cref="SydneyRegionWeatherForecastTests"/> class.
+        /// </summary>
         public SydneyRegionWeatherForecastTests()
         {
-            MockBomSydneyRegionApiRunner = new Mock<IBomAustraliaApiRunner>();
-            SydneyRegionWeatherForecast = new SydneyRegionWeatherForecast(MockBomSydneyRegionApiRunner.Object);
-            ValidSydneyWeatherForecastHeader = new List<BomHeader>()
+            this.MockBomSydneyRegionApiRunner = new Mock<IBomAustraliaApiRunner>();
+            this.SydneyRegionWeatherForecast = new SydneyRegionWeatherForecast(this.MockBomSydneyRegionApiRunner.Object);
+            this.ValidSydneyWeatherForecastHeader = new List<BomHeader>()
             {
                 new BomHeader()
                 {
@@ -32,51 +40,63 @@ namespace WeatherFeed.Tests.Australia.NSW
                     time_zone = "EDT",
                     product_name = "Capital City Observations",
                     state = "New South Wales",
-                    refresh_message = "Issued at  4:11 pm EDT Friday 15 November 2019"
-                }
+                    refresh_message = "Issued at  4:11 pm EDT Friday 15 November 2019",
+                },
             };
         }
 
+        /// <summary>
+        /// GetLatestForecastAsync throws exception when forecast is null.
+        /// </summary>
+        /// <returns>Task.</returns>
         [Fact]
         public async Task GetLatestForecastAsync_NoForecastAvailable_ThrowsException()
         {
             // Arrange
-            MockBomSydneyRegionApiRunner
+            this.MockBomSydneyRegionApiRunner
                 .Setup(b => b.GetLatestSydneyRegionForecastAsync(It.IsAny<CancellationToken>()))
                 .Returns(Task.FromResult<BomLatestWeatherForecast>(null));
 
             // Act
-            await Assert.ThrowsAsync<InvalidOperationException>(() => SydneyRegionWeatherForecast.GetLatestForecastAsync());
+            await Assert.ThrowsAsync<InvalidOperationException>(() => this.SydneyRegionWeatherForecast.GetLatestForecastAsync());
 
             // Assert
-            MockBomSydneyRegionApiRunner
+            this.MockBomSydneyRegionApiRunner
                 .Verify(
                     b => b.GetLatestSydneyRegionForecastAsync(It.IsAny<CancellationToken>()),
                     Times.Once);
         }
 
+        /// <summary>
+        /// GetLatestSydneyRegionForecastAsync throws exception on null oberservations forecast.
+        /// </summary>
+        /// <returns>Task.</returns>
         [Fact]
         public async Task GetLatestForecastAsync_NullObservationsForecast_ThrowsException()
         {
             // Arrange
             var nullObservationsForecast = new BomLatestWeatherForecast()
             {
-                observations = null
+                observations = null,
             };
-            MockBomSydneyRegionApiRunner
+            this.MockBomSydneyRegionApiRunner
                 .Setup(b => b.GetLatestSydneyRegionForecastAsync(It.IsAny<CancellationToken>()))
                 .Returns(Task.FromResult(nullObservationsForecast));
 
             // Act
-            await Assert.ThrowsAsync<InvalidOperationException>(() => SydneyRegionWeatherForecast.GetLatestForecastAsync());
+            await Assert.ThrowsAsync<InvalidOperationException>(() => this.SydneyRegionWeatherForecast.GetLatestForecastAsync());
 
             // Assert
-            MockBomSydneyRegionApiRunner
+            this.MockBomSydneyRegionApiRunner
                 .Verify(
                     b => b.GetLatestSydneyRegionForecastAsync(It.IsAny<CancellationToken>()),
                     Times.Once);
         }
 
+        /// <summary>
+        /// GetLatestSydneyRegionForecastAsync throws exception on null data forecast.
+        /// </summary>
+        /// <returns>Task.</returns>
         [Fact]
         public async Task GetLatestForecastAsync_NullDataForecast_ThrowsException()
         {
@@ -85,24 +105,28 @@ namespace WeatherFeed.Tests.Australia.NSW
             {
                 observations = new BomObservations()
                 {
-                    header = ValidSydneyWeatherForecastHeader,
-                    data = null
-                }
+                    header = this.ValidSydneyWeatherForecastHeader,
+                    data = null,
+                },
             };
-            MockBomSydneyRegionApiRunner
+            this.MockBomSydneyRegionApiRunner
                 .Setup(b => b.GetLatestSydneyRegionForecastAsync(It.IsAny<CancellationToken>()))
                 .Returns(Task.FromResult(nullObservationsForecast));
 
             // Act
-            await Assert.ThrowsAsync<InvalidOperationException>(() => SydneyRegionWeatherForecast.GetLatestForecastAsync());
+            await Assert.ThrowsAsync<InvalidOperationException>(() => this.SydneyRegionWeatherForecast.GetLatestForecastAsync());
 
             // Assert
-            MockBomSydneyRegionApiRunner
+            this.MockBomSydneyRegionApiRunner
                 .Verify(
                     b => b.GetLatestSydneyRegionForecastAsync(It.IsAny<CancellationToken>()),
                     Times.Once);
         }
 
+        /// <summary>
+        /// GetLatestSydneyRegionForecastAsync with empty day forecast is sucessful.
+        /// </summary>
+        /// <returns>Task.</returns>
         [Fact]
         public async Task GetLatestForecastAsync_EmptyDayForecast_Success()
         {
@@ -111,19 +135,19 @@ namespace WeatherFeed.Tests.Australia.NSW
             {
                 observations = new BomObservations()
                 {
-                    header = ValidSydneyWeatherForecastHeader,
-                    data = new List<BomData>()
-                }
+                    header = this.ValidSydneyWeatherForecastHeader,
+                    data = new List<BomData>(),
+                },
             };
-            MockBomSydneyRegionApiRunner
+            this.MockBomSydneyRegionApiRunner
                 .Setup(b => b.GetLatestSydneyRegionForecastAsync(It.IsAny<CancellationToken>()))
                 .Returns(Task.FromResult(emptyDayForecast));
 
             // Act
-            var weatherForecast = await SydneyRegionWeatherForecast.GetLatestForecastAsync();
+            var weatherForecast = await this.SydneyRegionWeatherForecast.GetLatestForecastAsync();
 
             // Assert
-            MockBomSydneyRegionApiRunner
+            this.MockBomSydneyRegionApiRunner
                 .Verify(
                     b => b.GetLatestSydneyRegionForecastAsync(It.IsAny<CancellationToken>()),
                     Times.Once);
@@ -131,6 +155,10 @@ namespace WeatherFeed.Tests.Australia.NSW
             Assert.Empty(weatherForecast.DayForecasts);
         }
 
+        /// <summary>
+        /// GetLatestSydneyRegionForecastAsync with valid forecast is successful.
+        /// </summary>
+        /// <returns>Task.</returns>
         [Fact]
         public async Task GetLatestForecastAsync_ValidForecast_Success()
         {
@@ -139,7 +167,7 @@ namespace WeatherFeed.Tests.Australia.NSW
             {
                 observations = new BomObservations()
                 {
-                    header = ValidSydneyWeatherForecastHeader,
+                    header = this.ValidSydneyWeatherForecastHeader,
                     data = new List<BomData>()
                     {
                         new BomData()
@@ -150,20 +178,20 @@ namespace WeatherFeed.Tests.Australia.NSW
                             aifstime_utc = 20191115050000,
                             air_temp = 26.4,
                             wind_dir = "NE",
-                            wind_spd_kmh = 11
-                        }
-                    }
-                }
+                            wind_spd_kmh = 11,
+                        },
+                    },
+                },
             };
-            MockBomSydneyRegionApiRunner
+            this.MockBomSydneyRegionApiRunner
                 .Setup(b => b.GetLatestSydneyRegionForecastAsync(It.IsAny<CancellationToken>()))
                 .Returns(Task.FromResult(validDayForecast));
 
             // Act
-            var weatherForecast = await SydneyRegionWeatherForecast.GetLatestForecastAsync();
+            var weatherForecast = await this.SydneyRegionWeatherForecast.GetLatestForecastAsync();
 
             // Assert
-            MockBomSydneyRegionApiRunner
+            this.MockBomSydneyRegionApiRunner
                 .Verify(
                     b => b.GetLatestSydneyRegionForecastAsync(It.IsAny<CancellationToken>()),
                     Times.Once);

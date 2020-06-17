@@ -9,27 +9,27 @@ namespace NewsFeed.Data.Weather
     public class DayForecast
     {
         /// <summary>
-        /// Location of the weather forecast.
+        /// Gets or sets location of the weather forecast.
         /// </summary>
         public string Location { get; set; }
 
         /// <summary>
-        /// Format is in DD/HH:MM:(am/pm) - not a standard format.
+        /// Gets or sets format is in DD/HH:MM:(am/pm) - not a standard format.
         /// </summary>
         public string LocalTime { get; set; }
 
         /// <summary>
-        /// Air temperature in degrees celsius.
+        /// Gets or sets air temperature in degrees celsius.
         /// </summary>
         public double AirTemperature { get; set; }
 
         /// <summary>
-        /// Current wind direction.
+        /// Gets or sets current wind direction.
         /// </summary>
         public string WindDirection { get; set; }
 
         /// <summary>
-        /// Wind speed in km/hr.
+        /// Gets or sets wind speed in km/hr.
         /// </summary>
         public int WindSpeedKmHr { get; set; }
     }

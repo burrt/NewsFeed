@@ -9,3 +9,12 @@ insert_final_newline = true
 
 [*.{cs,ps1,ts,html,scss}]
 indent_size = 4
+
+# SA1201: Elements should appear in the correct order
+dotnet_diagnostic.SA1201.severity = none
+
+# SA1208: System using directives should be placed before other using directives
+dotnet_diagnostic.SA1208.severity = none
+
+# SA1633: File should have header
+dotnet_diagnostic.SA1633.severity = none

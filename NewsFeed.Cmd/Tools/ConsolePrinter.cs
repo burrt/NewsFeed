@@ -8,6 +8,7 @@ namespace NewsFeed.Cmd.Tools
     /// </summary>
     public class ConsolePrinter : IConsolePrinter
     {
+        /// <inheritdoc />
         public void Write(TextWriter outputStream, string value = null)
         {
             Guard.IsNotNull(outputStream, nameof(outputStream));
@@ -15,6 +16,7 @@ namespace NewsFeed.Cmd.Tools
             outputStream.Write(value);
         }
 
+        /// <inheritdoc />
         public void WriteLine(TextWriter outputStream, string value = null)
         {
             Guard.IsNotNull(outputStream, nameof(outputStream));

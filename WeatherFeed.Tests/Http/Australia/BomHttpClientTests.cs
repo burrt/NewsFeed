@@ -10,11 +10,18 @@ using Xunit;
 
 namespace WeatherFeed.Tests.Http.Australia
 {
+    /// <summary>
+    /// BOM HTTP client tests.
+    /// </summary>
     public class BomHttpClientTests
     {
         private const string AusGovBomProductsUrl = "http://www.bom.gov.au/fwo/";
         private const string RegionId = "123";
 
+        /// <summary>
+        /// GetWeatherForecastAsync throws exception for non-success status codes.
+        /// </summary>
+        /// <returns>Task.</returns>
         [Fact]
         public async Task GetWeatherForecastAsync_NotSuccessCode_ThrowsInvalidOperationException()
         {
@@ -51,6 +58,10 @@ namespace WeatherFeed.Tests.Http.Australia
                     ItExpr.IsAny<CancellationToken>());
         }
 
+        /// <summary>
+        /// GetWeatherForecastAsync is successful for valid HTTP response message content.
+        /// </summary>
+        /// <returns>Task.</returns>
         [Fact]
         public async Task GetWeatherForecastAsync_ValidHttpResponseMessageContent_Success()
         {
