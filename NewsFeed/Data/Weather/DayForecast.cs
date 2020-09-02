@@ -21,7 +21,7 @@ namespace NewsFeed.Data.Weather
         /// <summary>
         /// Gets or sets air temperature in degrees celsius.
         /// </summary>
-        public double AirTemperature { get; set; }
+        public double? AirTemperature { get; set; }
 
         /// <summary>
         /// Gets or sets current wind direction.
@@ -31,6 +31,6 @@ namespace NewsFeed.Data.Weather
         /// <summary>
         /// Gets or sets wind speed in km/hr.
         /// </summary>
-        public int WindSpeedKmHr { get; set; }
+        public int? WindSpeedKmHr { get; set; }
     }
 }
