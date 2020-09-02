@@ -10,7 +10,7 @@ using WeatherFeed.Http.Australia;
 namespace WeatherFeed.Australia.NSW
 {
     /// <summary>
-    /// System region weather forecase.
+    /// System region weather forecast.
     /// </summary>
     public class SydneyRegionWeatherForecast : ISydneyRegionWeatherForecast
     {
