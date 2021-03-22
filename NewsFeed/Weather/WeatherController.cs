@@ -49,7 +49,7 @@ namespace NewsFeed.Weather
                     WindSpeedKmHr = d.WindSpeedKmHr,
                 }).ToList(),
             };
-            return Ok(viewModel);
+            return this.Ok(viewModel);
         }
     }
 }
