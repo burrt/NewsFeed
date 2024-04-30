@@ -4,21 +4,38 @@ on:
   push:
     branches:
     - master
+  pull_request:
+    branches:
+      - master
 
 jobs:
   build:
-
     runs-on: ubuntu-latest
 
     steps:
-    - uses: actions/checkout@v1
-    - name: Setup .NET Core
-      uses: actions/setup-dotnet@v1
+    - name: Cloning the repo
+      uses: actions/checkout@v4
+
+    - name: Setup .NET
+      uses: actions/setup-dotnet@v4
+
+    - name: Setup Java for SonarScanner
+      uses: actions/setup-java@v4
       with:
-        dotnet-version: 3.1.100
+        distribution: microsoft
+        java-version: 21
+
+    - name: Setup SonarCloud
+      run: dotnet tool install --global dotnet-sonarscanner
+
+    - name: Start SonarCloud scan
+      run: dotnet sonarscanner begin /k:"${{ vars.SONAR_PROJ_KEY }}" /o:"${{ vars.SONAR_ORG }}" /d:sonar.token="${{ secrets.SONAR_TOKEN }}" /d:sonar.host.url=https://sonarcloud.io
 
     - name: Build with dotnet
       run: dotnet build --configuration Release
 
     - name: Run all tests
       run: dotnet test
+
+    - name: End SonarCloud scan
+      run: dotnet sonarscanner end /d:sonar.token="${{ secrets.SONAR_TOKEN }}"
