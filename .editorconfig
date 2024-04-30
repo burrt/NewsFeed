@@ -10,6 +10,9 @@ insert_final_newline = true
 [*.{cs,ps1,ts,html,scss}]
 indent_size = 4
 
+[*.{yml, yaml}]
+indent_size = 2
+
 # SA1201: Elements should appear in the correct order
 dotnet_diagnostic.SA1201.severity = none
 
