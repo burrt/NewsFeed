@@ -1,13 +1,14 @@
-using Moq;
-using NewsFeed.Data.Weather;
 using System;
 using System.Collections.Generic;
 using System.Threading;
 using System.Threading.Tasks;
+using Moq;
+using NewsFeed.Data.Weather;
 using NewsFeed.Data.WeatherFeed.Australia.NSW;
 using WeatherFeed.Australia.NSW;
 using WeatherFeed.Http.Australia;
 using Xunit;
+
 
 namespace WeatherFeed.Tests.Australia.NSW
 {

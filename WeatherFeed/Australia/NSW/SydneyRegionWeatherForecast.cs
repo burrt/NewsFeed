@@ -1,10 +1,10 @@
-using NewsFeed.Data.Weather;
-using NewsFeed.Weather.Australia.NSW;
 using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading;
 using System.Threading.Tasks;
+using NewsFeed.Data.Weather;
+using NewsFeed.Weather.Australia.NSW;
 using WeatherFeed.Http.Australia;
 
 namespace WeatherFeed.Australia.NSW

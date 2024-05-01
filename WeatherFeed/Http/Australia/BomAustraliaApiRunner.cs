@@ -1,8 +1,8 @@
-using NewsFeed.Data.WeatherFeed.Australia.NSW;
-using Newtonsoft.Json;
 using System;
 using System.Threading;
 using System.Threading.Tasks;
+using NewsFeed.Data.WeatherFeed.Australia.NSW;
+using Newtonsoft.Json;
 
 namespace WeatherFeed.Http.Australia
 {

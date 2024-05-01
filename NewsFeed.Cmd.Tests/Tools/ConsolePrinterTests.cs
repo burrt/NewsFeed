@@ -1,7 +1,7 @@
-using Moq;
-using NewsFeed.Cmd.Tools;
 using System;
 using System.IO;
+using Moq;
+using NewsFeed.Cmd.Tools;
 using Xunit;
 
 namespace NewsFeed.Cmd.Tests.Tools

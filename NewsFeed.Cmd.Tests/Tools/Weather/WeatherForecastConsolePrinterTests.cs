@@ -1,10 +1,10 @@
+using System;
+using System.Collections.Generic;
+using System.IO;
 using Moq;
 using NewsFeed.Cmd.Tools;
 using NewsFeed.Cmd.Tools.Weather;
 using NewsFeed.Data.Weather;
-using System;
-using System.Collections.Generic;
-using System.IO;
 using Xunit;
 
 namespace NewsFeed.Cmd.Tests.Tools.Weather

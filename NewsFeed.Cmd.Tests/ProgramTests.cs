@@ -1,11 +1,11 @@
+using System;
+using System.Threading;
+using System.Threading.Tasks;
 using Moq;
 using NewsFeed.Cmd.Tools;
 using NewsFeed.Cmd.Tools.Weather;
 using NewsFeed.Data.Weather;
 using NewsFeed.Weather.Australia.NSW;
-using System;
-using System.Threading;
-using System.Threading.Tasks;
 using Xunit;
 
 namespace NewsFeed.Cmd.Tests
@@ -89,7 +89,7 @@ namespace NewsFeed.Cmd.Tests
         }
 
         /// <summary>
-        /// PrintToConsoleShutdownMessage throws excetpion for null console printer.
+        /// PrintToConsoleShutdownMessage throws exception for null console printer.
         /// </summary>
         [Fact]
         public void PrintToConsoleShutdownMessage_NullConsolePrinter_ThrowsException()

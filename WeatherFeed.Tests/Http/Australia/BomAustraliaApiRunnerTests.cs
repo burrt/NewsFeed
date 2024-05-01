@@ -1,8 +1,9 @@
-using Moq;
 using System.Threading;
 using System.Threading.Tasks;
+using Moq;
 using WeatherFeed.Http.Australia;
 using Xunit;
+
 
 namespace WeatherFeed.Tests.Http.Australia
 {

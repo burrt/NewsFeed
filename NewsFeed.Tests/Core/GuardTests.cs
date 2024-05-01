@@ -1,6 +1,7 @@
-using NewsFeed.Core;
 using System;
+using NewsFeed.Core;
 using Xunit;
+
 
 namespace NewsFeed.Tests.Core
 {
