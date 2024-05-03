@@ -1,6 +1,7 @@
 ﻿using System.Threading;
-using NewsFeed.Data.Weather;
 using System.Threading.Tasks;
+using NewsFeed.Data.Weather;
+
 
 namespace NewsFeed.Weather.Australia.NSW
 {

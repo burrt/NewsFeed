@@ -1,13 +1,13 @@
+using System;
+using System.Diagnostics.CodeAnalysis;
+using System.Threading;
+using System.Threading.Tasks;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Logging;
 using NewsFeed.Cmd.Tools;
 using NewsFeed.Cmd.Tools.Weather;
 using NewsFeed.Core;
 using NewsFeed.Weather.Australia.NSW;
-using System;
-using System.Diagnostics.CodeAnalysis;
-using System.Threading;
-using System.Threading.Tasks;
 
 namespace NewsFeed.Cmd
 {
@@ -16,8 +16,6 @@ namespace NewsFeed.Cmd
     /// </summary>
     public class Program
     {
-        private ILogger Logger { get; set; }
-
         private IServiceProvider ConsoleServiceProvider { get; }
 
         private IWeatherForecastConsolePrinter WeatherForecastConsolePrinter { get; }

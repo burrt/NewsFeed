@@ -1,7 +1,7 @@
+using System.Diagnostics.CodeAnalysis;
 using Microsoft.Extensions.DependencyInjection;
 using NewsFeed.Cmd.Tools.Weather;
 using NewsFeed.Core;
-using System.Diagnostics.CodeAnalysis;
 
 namespace NewsFeed.Cmd.Tools
 {

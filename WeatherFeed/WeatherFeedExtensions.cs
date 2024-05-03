@@ -1,6 +1,6 @@
+using System.Diagnostics.CodeAnalysis;
 using Microsoft.Extensions.DependencyInjection;
 using NewsFeed.Core;
-using System.Diagnostics.CodeAnalysis;
 using WeatherFeed.Australia;
 using WeatherFeed.Http.Australia;
 
