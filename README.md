@@ -9,6 +9,8 @@ A basic application for retrieving news information from the internet and experi
 
 ## Getting started
 
+The required .NET SDK version to run is specified in the `globals.json` file.
+
 ```bash
 # clone the repository
 $ git clone https://github.com/burrt/NewsFeed.git
