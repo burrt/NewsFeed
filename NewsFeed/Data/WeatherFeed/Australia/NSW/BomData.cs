@@ -44,7 +44,7 @@ namespace NewsFeed.Data.WeatherFeed.Australia.NSW
         /// <summary>
         /// Gets or sets wind speed (km/h).
         /// </summary>
-        public int wind_spd_kmh { get; set; }
+        public int? wind_spd_kmh { get; set; }
 
 #pragma warning restore IDE1006
 #pragma warning restore SA1300 // Element should begin with upper-case letter

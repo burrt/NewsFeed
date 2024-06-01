@@ -31,6 +31,6 @@ namespace NewsFeed.Data.Weather
         /// <summary>
         /// Gets or sets wind speed in km/hr.
         /// </summary>
-        public int WindSpeedKmHr { get; set; }
+        public int? WindSpeedKmHr { get; set; }
     }
 }
