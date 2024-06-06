@@ -16,7 +16,7 @@ jobs:
     - name: Cloning the repo
       uses: actions/checkout@v4
 
-    - name: Setup .NET
+    - name: Setup .NET - uses globals.json
       uses: actions/setup-dotnet@v4
 
     - name: Setup Java for SonarScanner
@@ -35,7 +35,7 @@ jobs:
       run: dotnet build --configuration Release
 
     - name: Run all tests
-      run: dotnet test
+      run: dotnet test --collect "Code Coverage"
 
     - name: End SonarCloud scan
       run: dotnet sonarscanner end /d:sonar.token="${{ secrets.SONAR_TOKEN }}"
