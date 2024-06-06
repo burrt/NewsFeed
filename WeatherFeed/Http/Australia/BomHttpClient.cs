@@ -44,7 +44,7 @@ namespace WeatherFeed.Http.Australia
                 throw new InvalidOperationException($"BOM API returned no success exit code: {httpResponseMessage.StatusCode}, content: {httpResponseMessage.Content}");
             }
 
-            return await httpResponseMessage.Content.ReadAsStringAsync();
+            return await httpResponseMessage.Content.ReadAsStringAsync(cancellationToken);
         }
     }
 }

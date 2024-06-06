@@ -6,50 +6,50 @@ namespace NewsFeed.Data.WeatherFeed.Australia.NSW
     /// BOM Header.
     /// </summary>
     [ExcludeFromCodeCoverage]
-    public class BomHeader
+    public record BomHeader
     {
 #pragma warning disable SA1300 // Element should begin with upper-case letter
 #pragma warning disable IDE1006 // Naming Styles
 
         /// <summary>
-        /// Gets or sets refresh message.
+        /// Gets refresh message.
         /// </summary>
-        public string refresh_message { get; set; }
+        public string refresh_message { get; init; }
 
         /// <summary>
-        /// Gets or sets ID.
+        /// Gets ID.
         /// </summary>
-        public string ID { get; set; }
+        public string ID { get; init; }
 
         /// <summary>
-        /// Gets or sets main ID.
+        /// Gets main ID.
         /// </summary>
-        public string main_ID { get; set; }
+        public string main_ID { get; init; }
 
         /// <summary>
-        /// Gets or sets name.
+        /// Gets name.
         /// </summary>
-        public string name { get; set; }
+        public string name { get; init; }
 
         /// <summary>
-        /// Gets or sets state time zone.
+        /// Gets state time zone.
         /// </summary>
-        public string state_time_zone { get; set; }
+        public string state_time_zone { get; init; }
 
         /// <summary>
-        /// Gets or sets time zone.
+        /// Gets time zone.
         /// </summary>
-        public string time_zone { get; set; }
+        public string time_zone { get; init; }
 
         /// <summary>
-        /// Gets or sets product name.
+        /// Gets product name.
         /// </summary>
-        public string product_name { get; set; }
+        public string product_name { get; init; }
 
         /// <summary>
-        /// Gets or sets the state.
+        /// Gets the state.
         /// </summary>
-        public string state { get; set; }
+        public string state { get; init; }
 
 #pragma warning restore SA1300 // Element should begin with upper-case letter
 #pragma warning restore IDE1006 // Naming Styles
