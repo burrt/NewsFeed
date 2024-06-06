@@ -1,7 +1,6 @@
 # News feed application
 
 ![Build Status](https://github.com/burrt/NewsFeed/actions/workflows/main.yml/badge.svg?branch=master)
-[![Build Status](https://geoffchoy.visualstudio.com/NewsFeed/_apis/build/status/burrt.NewsFeed?branchName=master)](https://geoffchoy.visualstudio.com/NewsFeed/_build/latest?definitionId=1&branchName=master)
 [![Quality Gate Status](https://sonarcloud.io/api/project_badges/measure?project=burrt_NewsFeed&metric=alert_status)](https://sonarcloud.io/summary/new_code?id=burrt_NewsFeed)
 [![Coverage](https://sonarcloud.io/api/project_badges/measure?project=burrt_NewsFeed&metric=coverage)](https://sonarcloud.io/summary/new_code?id=burrt_NewsFeed)
 
