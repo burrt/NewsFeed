@@ -6,45 +6,45 @@ namespace NewsFeed.Data.WeatherFeed.Australia.NSW
     /// BOM data.
     /// </summary>
     [ExcludeFromCodeCoverage]
-    public class BomData
+    public record BomData
     {
 #pragma warning disable IDE1006
 #pragma warning disable SA1300 // Element should begin with upper-case letter
 
         /// <summary>
-        /// Gets or sets sort order.
+        /// Gets sort order.
         /// </summary>
-        public int sort_order { get; set; }
+        public int sort_order { get; init; }
 
         /// <summary>
-        /// Gets or sets name.
+        /// Gets name.
         /// </summary>
-        public string name { get; set; }
+        public string name { get; init; }
 
         /// <summary>
-        /// Gets or sets local date time.
+        /// Gets local date time.
         /// </summary>
-        public string local_date_time { get; set; }
+        public string local_date_time { get; init; }
 
         /// <summary>
-        /// Gets or sets time UTC.
+        /// Gets time UTC.
         /// </summary>
-        public long aifstime_utc { get; set; }
+        public long aifstime_utc { get; init; }
 
         /// <summary>
-        /// Gets or sets air temperature in degrees celcius.
+        /// Gets air temperature in degrees celsius.
         /// </summary>
-        public double air_temp { get; set; }
+        public double air_temp { get; init; }
 
         /// <summary>
-        /// Gets or sets wind direction.
+        /// Gets wind direction.
         /// </summary>
-        public string wind_dir { get; set; }
+        public string wind_dir { get; init; }
 
         /// <summary>
-        /// Gets or sets wind speed (km/h).
+        /// Gets wind speed (km/h).
         /// </summary>
-        public int? wind_spd_kmh { get; set; }
+        public int? wind_spd_kmh { get; init; }
 
 #pragma warning restore IDE1006
 #pragma warning restore SA1300 // Element should begin with upper-case letter

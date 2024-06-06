@@ -7,20 +7,20 @@ namespace NewsFeed.Data.WeatherFeed.Australia.NSW
     /// BOM observations.
     /// </summary>
     [ExcludeFromCodeCoverage]
-    public class BomObservations
+    public record BomObservations
     {
 #pragma warning disable IDE1006
 #pragma warning disable SA1300 // Element should begin with upper-case letter
 
         /// <summary>
-        /// Gets or sets Header.
+        /// Gets BOM header.
         /// </summary>
-        public IList<BomHeader> header { get; set; }
+        public IList<BomHeader> header { get; init; }
 
         /// <summary>
-        /// Gets or sets data.
+        /// Gets BOM data.
         /// </summary>
-        public IList<BomData> data { get; set; }
+        public IList<BomData> data { get; init; }
 
 #pragma warning restore IDE1006
 #pragma warning restore SA1300 // Element should begin with upper-case letter

@@ -1,5 +1,4 @@
 using System;
-using System.Collections.Generic;
 using System.Linq;
 using System.Threading;
 using System.Threading.Tasks;
@@ -10,7 +9,7 @@ using WeatherFeed.Http.Australia;
 namespace WeatherFeed.Australia.NSW
 {
     /// <summary>
-    /// System region weather forecase.
+    /// System region weather forecast.
     /// </summary>
     public class SydneyRegionWeatherForecast : ISydneyRegionWeatherForecast
     {
@@ -42,7 +41,7 @@ namespace WeatherFeed.Australia.NSW
                 LocationState = header.state,
                 RefreshMessage = header.refresh_message,
                 TimeZone = header.time_zone,
-                DayForecasts = new List<DayForecast>(),
+                DayForecasts = [],
             };
 
             foreach (var dayForecast in sydneyRegionForecast.observations.data)

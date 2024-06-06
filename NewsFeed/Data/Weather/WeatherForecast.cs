@@ -7,36 +7,36 @@ namespace NewsFeed.Data.Weather
     /// Weather forecast.
     /// </summary>
     [ExcludeFromCodeCoverage]
-    public class WeatherForecast
+    public record WeatherForecast
     {
         /// <summary>
-        /// Gets or sets weather forecast location ID.
+        /// Gets weather forecast location ID.
         /// </summary>
-        public string Id { get; set; }
+        public string Id { get; init; }
 
         /// <summary>
-        /// Gets or sets location name within the state of where the weather forecast was made.
+        /// Gets location name within the state of where the weather forecast was made.
         /// </summary>
-        public string LocationInState { get; set; }
+        public string LocationInState { get; init; }
 
         /// <summary>
-        /// Gets or sets the name of the state for where the weather forecast was made.
+        /// Gets the name of the state for where the weather forecast was made.
         /// </summary>
-        public string LocationState { get; set; }
+        public string LocationState { get; init; }
 
         /// <summary>
-        /// Gets or sets message for the weather forecast refresh.
+        /// Gets message for the weather forecast refresh.
         /// </summary>
-        public string RefreshMessage { get; set; }
+        public string RefreshMessage { get; init; }
 
         /// <summary>
-        /// Gets or sets time zone of where the weather forecast was taken.
+        /// Gets time zone of where the weather forecast was taken.
         /// </summary>
-        public string TimeZone { get; set; }
+        public string TimeZone { get; init; }
 
         /// <summary>
-        /// Gets or sets list of weather forecasts for the day.
+        /// Gets list of weather forecasts for the day.
         /// </summary>
-        public IList<DayForecast> DayForecasts { get; set; }
+        public IList<DayForecast> DayForecasts { get; init; }
     }
 }
